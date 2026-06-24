@@ -3,24 +3,124 @@
 <head>
   <meta charset="utf-8">
   <title>Halcyon Finance Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     html, body {
       margin: 0;
-      width: 100%;
-      height: 100%;
+      min-height: 100%;
       background: #FAF8F3;
+      color: #221F1B;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-    iframe {
-      border: 0;
+
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .card {
+      max-width: 560px;
       width: 100%;
-      height: 100vh;
+      background: #fff;
+      border: 1px solid #E6DED2;
+      border-radius: 22px;
+      padding: 40px;
+      box-shadow: 0 12px 40px rgba(34, 31, 27, 0.08);
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9A938A;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: 32px;
+      line-height: 1.1;
+    }
+
+    p {
+      margin: 0 0 24px;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #5F5851;
+    }
+
+    button, a.button {
+      display: inline-block;
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      background: #221F1B;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 22px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .secondary {
+      display: block;
+      margin-top: 18px;
+      color: #6F6860;
+      font-size: 14px;
+      text-decoration: underline;
+    }
+
+    .note {
+      margin-top: 26px;
+      font-size: 13px;
+      color: #8A8278;
     }
   </style>
 </head>
 <body>
-  <iframe
-    src="https://script.google.com/a/macros/byhalcyon.com/s/AKfycbxixriJ-3yA15Z9bQsjiWUZEMYgeDN5yOMd17qx7e5NqApxcTYgo8haSV5UUofCaQGO/exec"
-    allowfullscreen>
-  </iframe>
+  <div class="wrap">
+    <div class="card">
+      <div class="eyebrow">Halcyon Finance</div>
+      <h1>Finance Dashboard</h1>
+      <p>
+        Sign in with your <strong>@byhalcyon.com</strong> Google account to open the dashboard.
+      </p>
+
+      <button onclick="openWithHalcyonAccount()">
+        Open with Halcyon account
+      </button>
+
+      <a class="secondary" href="#" onclick="openDirectly(); return false;">
+        I am already signed in — open directly
+      </a>
+
+      <div class="note">
+        Access is limited to approved Halcyon users.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const APPS_SCRIPT_EXEC_URL = "https://script.google.com/a/macros/byhalcyon.com/s/AKfycbxixriJ-3yA15Z9bQsjiWUZEMYgeDN5yOMd17qx7e5NqApxcTYgo8haSV5UUofCaQGO/exec";
+    const DOMAIN = "byhalcyon.com";
+
+    function openWithHalcyonAccount() {
+      const loginUrl =
+        "https://accounts.google.com/AccountChooser" +
+        "?continue=" + encodeURIComponent(APPS_SCRIPT_EXEC_URL) +
+        "&hd=" + encodeURIComponent(DOMAIN);
+
+      window.top.location.href = loginUrl;
+    }
+
+    function openDirectly() {
+      window.top.location.href = APPS_SCRIPT_EXEC_URL;
+    }
+  </script>
 </body>
 </html>
